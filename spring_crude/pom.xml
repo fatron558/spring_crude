@@ -12,7 +12,7 @@
 
     <properties>
         <spring.version>5.2.0.RELEASE</spring.version>
-        <hibernate.version>5.4.1.Final</hibernate.version>
+        <hibernate.version>5.4.27.Final</hibernate.version>
     </properties>
 
     <dependencies>
@@ -51,8 +51,7 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>8.0.14</version>
-            <scope>runtime</scope>
+            <version>8.0.22</version>
         </dependency>
 
         <dependency>

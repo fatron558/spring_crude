@@ -5,10 +5,21 @@
     <title>All Users</title>
 </head>
 <body>
+<h2>All Users</h2>
+<br>
 
-<div th:each="user : ${users}">
-    <a th:href="@{/users/{id}(id=${user.getId()})}" th:text="${user.getFirstName()}">user</a>
-</div>
+<table cellspacing="10" cellpadding="5" border="1">
+    <tr>
+        <th>FirstName</th>
+        <th>LastName</th>
+        <th>Age</th>
+    </tr>
+    <tr th:each="user : ${users}">
+        <td th:utext="${user.firstName}"></td>
+        <td th:utext="${user.lastName}"></td>
+        <td th:utext="${user.age}"></td>
+    </tr>
+</table>
 
 </body>
 </html>
