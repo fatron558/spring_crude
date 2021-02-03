@@ -3,29 +3,40 @@ package web.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import web.dao.UserDAO;
+import web.models.User;
+import web.service.UserService;
 
 
 @Controller
+@RequestMapping("/")
 public class UserController {
 
-    private final UserDAO userDAO;
+    private final UserService userServiceImpl;
 
     @Autowired
-    public UserController(UserDAO userDAO) {
-        this.userDAO = userDAO;
+    public UserController(UserService userServiceImpl) {
+        this.userServiceImpl = userServiceImpl;
     }
 
-    @RequestMapping("/")
+    @GetMapping()
     public String index(Model model) {
-        model.addAttribute("users", userDAO.index());
-        return "users/index";
+        model.addAttribute("users", userServiceImpl.getAllUsers());
+        return "index";
     }
-/*
-    @GetMapping("/{id}")
-    public String show(@PathVariable("id") int id, Model model) {
-        model.addAttribute("user", userDAO.show(id));
-        return "users/show";
-    }*/
+
+    @GetMapping("/add")
+    public String addNewUser(@ModelAttribute("user") User user) {
+        return "add";
+    }
+
+    @PostMapping()
+    public String saveUser(@ModelAttribute("user") User user) {
+        userServiceImpl.saveUser(user);
+        return "redirect:/";
+    }
+
 }
