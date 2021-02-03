@@ -23,11 +23,6 @@ public class User {
 
     }
 
-    public User(int id, String firstName) { //убрать в дальнейшем
-        this.id = id;
-        this.firstName = firstName;
-    }
-
     public User(String firstName, String lastName, int age) {
         this.firstName = firstName;
         this.lastName = lastName;
